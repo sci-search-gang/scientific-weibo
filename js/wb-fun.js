@@ -17,7 +17,6 @@ function unicodeLiteral(str){
         else
             result += str[i];
     }
-
     return result;
 }
 
@@ -28,9 +27,8 @@ function unicodeLiteral(str){
 var collater = {
     regexify : function(str) {
         var rx = "";
-        var lit = unicodeLiteral(str);
         for (var i = 0; i < str.length; i++) {
-            rx += lit;
+            rx += unicodeLiteral(str.charAt(i));
             rx += "\\s*";
         }
         return rx;
@@ -44,7 +42,10 @@ var collater = {
         var patt = new RegExp(regexified);
         for (var j = 0; j < resultsArray.length; j++) {
             var results = resultsArray[j];
+            console.log("resultsArray[j]");
+            console.log(resultsArray[j]);
             for (var i = 0; i < results.length; i++) {
+                console.log("output text: " + results[i].text);
                 if (patt.test(results[i].text)) {
                     hits.push(results[i]);
                 }
@@ -70,7 +71,7 @@ var resulter = {
 // Source/AppKey id for account using this.
 var appKey = 202088835;
 // Number of sub-results for each sub-query that then get merged.
-var weiboQueryCount = 20;
+var weiboQueryCount = 100;
 // Number of queries waiting for a query to return.
 // TODO: fix hack. Global vars are not cool.
 var pendingQueries = 0;
@@ -108,7 +109,7 @@ var mergeResults = function (alternativeResults, queryString) {
 var displayResults = function (results) {
   // TODO: nicely display results
   var resultsHtml = resulter.resultify(results);
-  $("<div style='width:500px;height:400px; border:5px solid black;  background-color:white; box-shadow:10px 10px 10px black; position:fixed; top: 150px; left:150px; z-index:99999'><h1 style='margin:150px'>" + resultsHtml + "</h1></div>").appendTo("body");
+  $("<div style='width:500px;height:400px; border:1px solid black;  background-color:white; box-shadow:10px 10px 10px black; position:fixed; top: 150px; left:150px; z-index:99999'><h1 style='margin:150px'>" + resultsHtml + "</h1></div>").appendTo("body");
 };
 
 //
@@ -125,13 +126,14 @@ var handleWeiboResult = function (data) {
 
 // Make a Weibo query and add the resul to
 // Example: doWeiboQueryRequest("昆明", results);
-var doWeiboQueryRequest = function(queryString, results) {
-  console.log("doWeiboQueryRequest(" + queryString + ")");
+var doWeiboQueryRequest = function(localQuery, gloablQuery, results) {
+  console.log("doWeiboQueryRequest(" + localQuery + ")");
   (function($) {
     var url = "http://api.t.sina.com.cn/statuses/search.json?"
       + "source=" + appKey
-      + "&q=" + encodeURIComponent(queryString)
-      + "&count=" + weiboQueryCount;
+      + "&q=" + encodeURIComponent(localQuery)
+      + "&count=" + weiboQueryCount
+      + "&page=1";
     console.log("doWeiboQueryRequest url = " + url);
     $.ajax({
        type: 'GET',
@@ -142,19 +144,28 @@ var doWeiboQueryRequest = function(queryString, results) {
         dataType: 'jsonp',
         success: function(json) {
           console.log(json);
-          results.push(json);
+          results.push(json.data);
           pendingQueries--;
           if (pendingQueries == 0) {
-            mergeAndShowResults(results, queryString);
+            mergeAndShowResults(results, gloablQuery);
           }
         },
         error: function(e) {
-          console.log("failed result for query: " + queryString);
+          console.log("failed result for query: " + localQuery);
           pendingQueries--;
           console.log(e.message);
         }
     });
   })(jQuery);
+};
+
+var doScientificWeiboFromString = function (queryString) {
+  var quieries = makeAlternativeQueries(queryString);
+  var results = [];
+  pendingQueries = quieries.length;
+  for (i = 0; i < quieries.length; i++) {
+    doWeiboQueryRequest(quieries[i], queryString, results);
+  }
 };
 
 // Main function to do Scientific Weibo Search from a (typically failed) results
@@ -165,11 +176,5 @@ var doScientificWeibo = function () {
     alert("This only works on for weibo-search result pages.");
     return;
   }
-  var quieries = makeAlternativeQueries(query_string);
-  var results = [];
-  pendingQueries = quieries.length;
-  for (i = 0; i < quieries.length; i++) {
-    doWeiboQueryRequest(quieries[i], results);
-  }
+  doScientificWeiboFromString(queryString);
 };
-
