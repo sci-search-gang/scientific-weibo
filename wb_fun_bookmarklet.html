@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="js/wb-fun.js"></script>
+<title>WB-Fun Bookmarklet</title>
+<body>
+
+<div>
+<a onclick="window.alert('Drag this link to your bookmarks toolbar to be able to use it on any page.');return false;" href="javascript:(function(){var s=document.createElement('script');s.setAttribute('src','http://code.jquery.com/jquery-1.9.1.js');document.getElementsByTagName('head')[0].appendChild(s);var s=document.createElement('script');s.setAttribute('src','https://raw.github.com/infmally/wb-fun/master/js/wb-fun.js');document.getElementsByTagName('head')[0].appendChild(s);wbfunify();})();">
+  <span id="wb-name">WB-Fun Bookmarklet</span><img id="wb-img" src="ribbon.png" style="border-width:0px;"/>
+</a>
+</div>
+
+<div>
+Click <button type="button" onclick="var alternativeResults = [];pendingQueries = 1;doWeiboQueryRequest('昆明', alternativeResults);">
+here to run test with query for "昆明"</button>.
+</div>
+
+</body></html>
