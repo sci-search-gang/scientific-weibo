@@ -8,7 +8,7 @@ However, oftentimes posts which contain the term still do exist and have not bee
 site. By truncating your search keyword (昆明+P or 明+PX), you can often find relevant posts that 
 contain your original blocked keyword or a close variation of it.
 
-This tool aims to be a simple-to-install and use bookmarklet or browser extension that 
+This tool aims to be a simple-to-install and use bookmarklet that 
 
 1. quickly performs that search behind the scenes;
 
