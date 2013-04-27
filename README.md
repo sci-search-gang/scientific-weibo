@@ -30,7 +30,7 @@ Latest dump of info: https://pad.riseup.net/p/weibo-fun
 Building
 ========
 
-To create a bookmarklet from this javascript, just place the code inside <a> tag as an href
+To create a bookmarklet from this javascript, just place the code inside `<a>` tag as an href
 
 As an alternative, you can also use bookmarklet crunchinators like this one: http://ted.mielczarek.org/code/mozilla/bookmarklet.html
 
