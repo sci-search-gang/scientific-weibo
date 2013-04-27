@@ -1,6 +1,6 @@
 About
 ======
-A javascript bookmarklet to allow access to blocked search results on Sina Weibo. 
+A javascript bookmarklet to enable instant access to blocked search results on Sina [Weibo] (http://weibo.com). 
 
 Running
 =======
