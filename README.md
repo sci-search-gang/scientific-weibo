@@ -1,6 +1,6 @@
-wb-fun
+About
 ======
-Scientific Weibo is a javascript bookmarklet to allow access to blocked search results on Sina Weibo. 
+A javascript bookmarklet to allow access to blocked search results on Sina Weibo. 
 
 Running
 =======
@@ -36,6 +36,9 @@ Contributing
 
 We welcome any and all contributions. To help just fork the repository and issue a pull request. 
 
-Some next steps are to fit the code in to 2000 characters so it can be distributed more easily. 
-And investigating doing it as a browser extension instead of a bookmarklet.
+Some next steps are: 
+
+1. Fit the code in to 2000 characters with no external loading so it can be distributed more easily. 
+
+2. Browser extension versions, for more flexibility than just the bookmarklet.
 
