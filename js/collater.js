@@ -7,7 +7,7 @@ function fixedHex(number, length){
     return str;
 }
 
-/* Creates a unicode literal based on the string */    
+/* Creates a unicode literal based on the string */
 function unicodeLiteral(str){
     var i;
     var result = "";
@@ -26,13 +26,14 @@ var collater = {
         var rx = "";
         var lit = unicodeLiteral(str);
         for (var i = 0; i < str.length; i++) {
-            rx += "\\s*";
             rx += lit;
             rx += "\\s*";
         }
         return rx;
     },
-    
+
+    // TODO: remove any duplicates
+    // TODO: merge-sort to make the order best-results first
     collate : function(resultsArray, searchStr) {
         var hits = new Array();
         var regexified = this.regexify(searchStr);
