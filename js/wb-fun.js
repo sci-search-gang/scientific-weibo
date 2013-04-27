@@ -1,3 +1,26 @@
+
+/* Creates a uppercase hex number with at least length digits from a given number */
+function fixedHex(number, length){
+    var str = number.toString(16).toUpperCase();
+    while(str.length < length)
+        str = "0" + str;
+    return str;
+}
+
+/* Creates a unicode literal based on the string */
+function unicodeLiteral(str){
+    var i;
+    var result = "";
+    for( i = 0; i < str.length; ++i){
+        if(str.charCodeAt(i) > 126 || str.charCodeAt(i) < 32)
+            result += "\\u" + fixedHex(str.charCodeAt(i),4);
+        else
+            result += str[i];
+    }
+
+    return result;
+}
+
 // for colating results
 // Dealing with unicode:
 //   var patt = new RegExp('\\u' + "昆明".charCodeAt(0).toString(16));
@@ -5,12 +28,9 @@
 var collater = {
     regexify : function(str) {
         var rx = "";
+        var lit = unicodeLiteral(str);
         for (var i = 0; i < str.length; i++) {
-            var curChar = '\\u' + str.charCodeAt(i).toString(16);
-            //rx += "\\s*";
-            rx += curChar;
-            //rx += "&#12290;";
-            //rx += "\\u12290+";
+            rx += lit;
             rx += "\\s*";
         }
         return rx;
