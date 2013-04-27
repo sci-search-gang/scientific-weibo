@@ -38,6 +38,11 @@ Post the resulting link on any, and users can then drag it their bookmark bar fo
 
 More about bookmarklets here: http://en.wikipedia.org/wiki/Bookmarklet
 
+Visual
+============
+
+![demo image](http://i.imgur.com/quxwuuf.jpg)
+
 Contributing
 ============
 
