@@ -9,8 +9,11 @@ site. By truncating your search keyword (昆明+P or 明+PX), you can often find
 contain your original blocked keyword or a close variation of it.
 
 This tool aims to be a simple-to-install and use bookmarklet or browser extension that 
+
 1. quickly performs that search behind the scenes;
+
 2. identifies the most likely to be relevant search results;
+
 3. presents them to the user.
 
 Latest dump of info: https://pad.riseup.net/p/weibo-fun
