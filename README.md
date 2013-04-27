@@ -40,8 +40,8 @@ More about bookmarklets here: http://en.wikipedia.org/wiki/Bookmarklet
 
 Visual
 ============
+
 ![demo image](http://i.imgur.com/quxwuuf.jpg)
-Format: ![Alt Text](url)
 
 Contributing
 ============
