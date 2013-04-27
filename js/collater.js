@@ -24,10 +24,11 @@ function unicodeLiteral(str){
 var collater = {
     regexify : function(str) {
         var rx = "";
-        var lit = unicodeLiteral(str);
         for (var i = 0; i < str.length; i++) {
-            rx += lit;
+            var lit = unicodeLiteral(str.substring(i, i+1));
             rx += "\\s*";
+            rx += lit;
+            rx += "\\s*";            
         }
         return rx;
     },
