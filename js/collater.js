@@ -11,7 +11,9 @@ var collater = {
         }
         return rx;
     },
-    
+
+    // TODO: remove any duplicates
+    // TODO: merge-sort to make the order best-results first
     collate : function(resultsArray, searchStr) {
         var hits = new Array();
         var regexified = this.regexify(searchStr);
