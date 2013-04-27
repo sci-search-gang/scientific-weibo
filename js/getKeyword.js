@@ -1,6 +1,5 @@
 function getKeyword(){
-//var url_str=window.location.href
-var url_str="http://s.weibo.com/weibo/昆明PX&Refer=index";
+var url_str=window.location.href
 var n=url_str.search("&");
 if (n==-1)
   {
