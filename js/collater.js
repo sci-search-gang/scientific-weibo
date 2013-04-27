@@ -25,7 +25,7 @@ var collater = {
     regexify : function(str) {
         var rx = "";
         for (var i = 0; i < str.length; i++) {
-            var lit = unicodeLiteral(str.substring(i, i+1));
+            var lit = unicodeLiteral(str.charAt(i));
             rx += "\\s*";
             rx += lit;
             rx += "\\s*";            
