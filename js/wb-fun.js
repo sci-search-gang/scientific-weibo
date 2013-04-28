@@ -34,6 +34,60 @@ var collater = {
         return rx;
     },
 
+    scoreOrd : function(a,b) {
+      return a.ord - b.ord;
+    },
+
+    // Hacky: we assume ponly one of each character.
+    score : function(result, searchTerms) {
+      var nterms = searchTerms.length;
+      var positions = [];
+      var score = {};
+
+      var p0 = result.text.indexOf(searchTerms[0]);
+      var pn = result.text.lastIndexOf(searchTerms[nterms - 1]);
+
+      // 280 is max chars in Weibo. low sore = better.
+      score['closeness'] = pn - p0;
+
+      for (i = 0; i < nterms; i++) {
+        positions.push(result.text.indexOf(searchTerms[i]));
+      }
+
+      score['nmissingTerms'] = searchTerms.length - positions.length;
+      score['ord'] = score['closeness'] + score['nmissingTerms'];
+      score['result'] = result;
+      return score;
+    },
+
+    collate : function(resultsArray, searchStr) {
+        console.log("collating with search string: " + searchStr);
+        console.log("resultsArray: " + resultsArray.length);
+        console.log(resultsArray);
+
+        // Search terms = characters
+        var searchTerms = searchStr.split('');
+        var hits = [];
+        var merged = [];
+
+       for (var j = 0; j < resultsArray.length; j++) {
+          var r = resultsArray[j];
+          for (var i = 0; i < r.length; i++) {
+            merged.push(r[i]);
+          }
+        }
+        console.log("merged.length: " + merged.length);
+        console.log(merged);
+
+        for (var j = 0; j < merged.length; j++) {
+          hits.push(this.score(merged[j], searchTerms));
+        }
+
+        hits.sort(this.scoreOrd);
+        console.log("hits.length: " + hits.length);
+        return hits;
+    },
+/*
     collate : function(resultsArray, searchStr) {
         console.log("collating with search string: " + searchStr);
         var hits = new Array();
@@ -54,6 +108,7 @@ var collater = {
         console.log("collated hits: " + hits);
         return hits;
     }
+    */
 }
 
 // for displaying results
@@ -62,7 +117,7 @@ var resulter = {
         var all = "<div>";
         for (var i = 0; i < results.length; i++) {
             var r = results[i];
-            all += "\n<div class='res'><a href=''>"+r.text+"</href></div>\n";
+            all += "\n<div class='res'><a href=''>"+r.result.text+"</href></div>\n";
         }
         return all + "</div>";
     }
@@ -106,10 +161,16 @@ var mergeResults = function (alternativeResults, queryString) {
     //  alternativeResults[0];
 };
 
+var removeResults = function () {
+  $("body div#results").remove();
+};
+
 var displayResults = function (results) {
   // TODO: nicely display results
   var resultsHtml = resulter.resultify(results);
-  $("<div style='width:500px;height:400px; border:1px solid black;  background-color:white; box-shadow:10px 10px 10px black; position:fixed; top: 150px; left:150px; z-index:99999'><h1 style='margin:150px'>" + resultsHtml + "</h1></div>").appendTo("body");
+  $("body div#results").remove();
+  $("<div id='results'>" + resultsHtml + "</div>").appendTo("body");
+//  $("body div#results").append("<div style='margin:5px;'><a onClick='removeResults();'>close</a></div>");
 };
 
 //
@@ -131,9 +192,9 @@ var doWeiboQueryRequest = function(localQuery, gloablQuery, results) {
   (function($) {
     var url = "http://api.t.sina.com.cn/statuses/search.json?"
       + "source=" + appKey
-      + "&q=" + encodeURIComponent(localQuery)
-      + "&count=" + weiboQueryCount
-      + "&page=1";
+      + "&q=" + encodeURIComponent(localQuery);
+      //+ "&count=" + weiboQueryCount
+      //+ "&page=1";
     console.log("doWeiboQueryRequest url = " + url);
     $.ajax({
        type: 'GET',
@@ -159,12 +220,14 @@ var doWeiboQueryRequest = function(localQuery, gloablQuery, results) {
   })(jQuery);
 };
 
-var doScientificWeiboFromString = function (queryString) {
-  var quieries = makeAlternativeQueries(queryString);
+var doScientificWeiboFromStrings = function (queriesTextAreaValue, originalQuery) {
+  var queries = queriesTextAreaValue.split('\n');
+  pendingQueries = queries.length;
   var results = [];
-  pendingQueries = quieries.length;
-  for (i = 0; i < quieries.length; i++) {
-    doWeiboQueryRequest(quieries[i], queryString, results);
+  $("body div#subsearches textarea#subsearches").value = "";
+  for (i = 0; i < queries.length; i++) {
+    $("body div#subsearches textarea#subsearches").value += queries[i] + '\n';
+    doWeiboQueryRequest(queries[i], originalQuery, results);
   }
 };
 
@@ -176,5 +239,10 @@ var doScientificWeibo = function () {
     alert("This only works on for weibo-search result pages.");
     return;
   }
-  doScientificWeiboFromString(queryString);
+  var queries = makeAlternativeQueries(queryString);
+  var results = [];
+  pendingQueries = queries.length;
+  for (i = 0; i < queries.length; i++) {
+    doWeiboQueryRequest(queries[i], queryString, results);
+  }
 };
