@@ -137,6 +137,7 @@ var pendingQueries = 0;
 // Return the weibo query from the URL; returns empty string or null when the
 // current url is not a weibo search result.
 var getWeiboQueryFromUrl = function(url_str) {
+
   var n=url_str.search("&");
   if (n==-1) {
     n=url_str.length;
@@ -202,7 +203,7 @@ var doWeiboQueryRequest = function(localQuery, gloablQuery, results) {
     $.ajax({
        type: 'GET',
         url: url,
-        async: false,
+        async: true,
         jsonpCallback: 'handleWeiboResult',
         contentType: "application/json",
         dataType: 'jsonp',
@@ -229,6 +230,7 @@ var doScientificWeiboFromStrings = function (queriesTextAreaValue, originalQuery
   var results = [];
   $("body div#subsearches textarea#subsearches").value = "";
   for (i = 0; i < queries.length; i++) {
+
     $("body div#subsearches textarea#subsearches").value += queries[i] + '\n';
     doWeiboQueryRequest(queries[i], originalQuery, results);
   }
@@ -236,12 +238,7 @@ var doScientificWeiboFromStrings = function (queriesTextAreaValue, originalQuery
 
 // Main function to do Scientific Weibo Search from a (typically failed) results
 // of weibo query.
-var doScientificWeibo = function () {
-  var queryString = getWeiboQueryFromUrl(window.location.href);
-  if (!queryString) {
-    alert("This only works on for weibo-search result pages.");
-    return;
-  }
+var doScientificWeibo = function (queryString) {
   var queries = makeAlternativeQueries(queryString);
   var results = [];
   pendingQueries = queries.length;
