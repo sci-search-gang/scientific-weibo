@@ -171,6 +171,7 @@ var removeResults = function () {
 
 var displayResults = function (results) {
   // TODO: nicely display results
+  console.log("displayResults");
   var resultsHtml = resulter.resultify(results);
   $("body div#results").remove();
   $("<div id='results'>" + resultsHtml + "</div>").appendTo("body");
@@ -211,6 +212,7 @@ var doWeiboQueryRequest = function(localQuery, gloablQuery, results) {
           console.log(json);
           results.push(json.data);
           pendingQueries--;
+          console.log("pendingQueries" + pendingQueries);
           if (pendingQueries == 0) {
             mergeAndShowResults(results, gloablQuery);
           }
