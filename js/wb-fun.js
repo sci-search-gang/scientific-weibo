@@ -49,6 +49,9 @@ var collater = {
 
       // 280 is max chars in Weibo. low sore = better.
       score['closeness'] = pn - p0;
+      if (score['closeness'] < 0) {
+        score['closeness'] += 280;
+      }
 
       for (i = 0; i < nterms; i++) {
         positions.push(result.text.indexOf(searchTerms[i]));
@@ -234,7 +237,7 @@ var doScientificWeiboFromStrings = function (queriesTextAreaValue, originalQuery
 // Main function to do Scientific Weibo Search from a (typically failed) results
 // of weibo query.
 var doScientificWeibo = function () {
-  var queryString = getWeiboQueryFromUrl(window.get_url());
+  var queryString = getWeiboQueryFromUrl(window.location.href);
   if (!queryString) {
     alert("This only works on for weibo-search result pages.");
     return;
