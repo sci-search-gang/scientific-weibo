@@ -213,7 +213,7 @@ var doWeiboQueryRequest = function(localQuery, gloablQuery, results) {
           results.push(json.data);
           pendingQueries--;
           console.log("pendingQueries" + pendingQueries);
-          if (pendingQueries == 0) {
+          if (pendingQueries <= 0) {
             mergeAndShowResults(results, gloablQuery);
           }
         },
