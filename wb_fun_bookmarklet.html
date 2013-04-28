@@ -1,23 +1,68 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="js/wb-fun.js"></script>
-<title>WB-Fun Bookmarklet</title>
+<title>Scientific Weibo Search</title>
+<style>
+div#search {
+  text-align: center;
+}
+body div#results {
+  margin-top:20px;
+  margin-left:20px;
+}
+</style>
+</head>
 <body>
 
+<div id='search'>
+  <div id='searchinput'>
+    <input id="input" type="text" name="query" value="昆明PX" size='80'></input>
+  </div>
+  <div>
+    <button id='Search' style="background-color: #EEE;" onClick="
+      $('textarea#subsearches')[0].value =
+        makeAlternativeQueries($('#input')[0].value).join('\n');
+    ">
+    1. Make Weibo Search Scientific
+    </button>
+  </div>
+
+  <div id='subsearches-block'>
+    <div>2. Review sub-searches</div>
+    <div><textarea id="subsearches" cols="80" rows="5">
+    </textarea></div>
+  </div>
+
+  <div>
+    <button id='Search' style="background-color: #EEE;" onclick="
+  doScientificWeiboFromStrings($('textarea#subsearches')[0].value,
+                               $('#input')[0].value);
+  ">
+      3. Do Scientific Weibo Search
+    </button>
+  </div>
+
 <div>
-<a onclick="window.alert('Drag this link to your bookmarks toolbar to be able to use it on any page.');return false;" href="javascript:(function(){var s=document.createElement('script');s.setAttribute('src','http://code.jquery.com/jquery-1.9.1.js');document.getElementsByTagName('head')[0].appendChild(s);var s=document.createElement('script');s.setAttribute('src','https://raw.github.com/infmally/wb-fun/master/js/wb-fun.js');document.getElementsByTagName('head')[0].appendChild(s);wbfunify();})();">
-  <span id="wb-name">WB-Fun Bookmarklet</span><img id="wb-img" src="ribbon.png" style="border-width:0px;"/>
+<a onclick="window.alert('Drag this link to your bookmarks toolbar to be able to use it on any page.');return false;" href="
+javascript:(function(){
+  var s=document.createElement('script');
+  s.setAttribute('src','http://code.jquery.com/jquery-1.9.1.js');
+  document.getElementsByTagName('head')[0].appendChild(s);
+
+  var s=document.createElement('script');
+  s.setAttribute('src','https://raw.github.com/infmally/wb-fun/master/js/wb-fun.js');
+  document.getElementsByTagName('head')[0].appendChild(s);
+
+  doScientificWeibo();
+})();
+  ">
+  <span id="wb-name">Scientific Weibo Bookmarklet</span><img id="wb-img" src="ribbon.png" style="border-width:0px;"/>
 </a>
 </div>
 
-<div>
-Click <span style="background-color: #EEE;" onclick="
-var alternativeResults = [];
-pendingQueries = 1;
-doScientificWeiboFromString('昆明PX');
-">
-here to run test with query for "昆明PX"</span>.
+
 </div>
 
 </body></html>
