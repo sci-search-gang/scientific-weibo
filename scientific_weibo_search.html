@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<!-- <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="js/scientific_weibo.js"></script>
-<!-- <script src="js/bookmarklet.js"></script> -->
+<script src="js/bookmarklet.js"></script> -->
 <title>Scientific Weibo Search</title>
 <style>
 div#search {
@@ -44,22 +44,21 @@ body div#results {
       3. Do Scientific Weibo Search
     </button>
   </div>
-
+</div>
+<hr>
 <div>
-<a onclick="window.alert('Drag this link to your bookmarks toolbar to be able to use it on any page.');return false;" href="
-javascript:(function(){
+You can also test the
+<a onclick="window.alert('Drag this link to your bookmarks toolbar to be able to use it on any page.');return false;" href="javascript:{
   if (!window.scientific_weibo_search) {
     var e = document.createElement('script');
     e.setAttribute('src','https://raw.github.com/sci-search-gang/scientific-weibo/master/js/bookmarklet.js');
     document.getElementsByTagName('head')[0].appendChild(e);
-    // TODO: Make it show that it is loading?
   } else {
     window.scientific_weibo_search.run();
   }
-})();
-  ">
-  <span id="wb-name">Scientific Weibo Bookmarklet</span>
-</a>
+};void(0);">
+<span id="wb-name">Scientific Weibo Bookmarklet</span></a>
+on this page (it will still query from weibo and display the results as it would on weibo's search page).
 </div>
-</div>
+
 </body></html>
