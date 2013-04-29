@@ -116,7 +116,7 @@ var collater = {
 // for displaying results and adding title that says "Scientific Search Results"
 var resulter = {
     resultify : function(results) {
-        var all = "<div style='margin:25px'> <h1 font='Lucida Sans Unicode'>科学搜索结果</h1>";
+        var all = "<div style='margin:25px'> <h1 class='sw_results_h1'>科学搜索结果:</h1>";
         for (var i = 0; i < results.length; i++) {
             var r = results[i];
             all += "\n<div class='res'>"+r.result.text+"</div>\n";
