@@ -3,7 +3,7 @@
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="js/scientific_weibo.js"></script>
-<script src="js/bookmarklet.js"></script>
+<!-- <script src="js/bookmarklet.js"></script> -->
 <title>Scientific Weibo Search</title>
 <style>
 div#search {
@@ -19,12 +19,12 @@ body div#results {
 
 <div id='search'>
   <div id='searchinput'>
-    <input id="input" type="text" name="query" value="昆明PX" size='80'></input>
+    <input class='searchInp_form' type="text" value="昆明PX" size='80'>
   </div>
   <div>
     <button id='Search' style="background-color: #EEE;" onClick="
       $('textarea#subsearches')[0].value =
-        makeAlternativeQueries($('#input')[0].value).join('\n');
+        makeAlternativeQueries($('.searchInp_form')[0].value).join('\n');
     ">
     1. Make Weibo Search Scientific
     </button>
@@ -39,7 +39,7 @@ body div#results {
   <div>
     <button id='Search' style="background-color: #EEE;" onclick="
   doScientificWeiboFromStrings($('textarea#subsearches')[0].value,
-                               $('#input')[0].value);
+                               $('.searchInp_form')[0].value);
   ">
       3. Do Scientific Weibo Search
     </button>
