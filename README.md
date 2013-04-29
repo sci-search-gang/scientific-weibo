@@ -34,6 +34,8 @@ Post the resulting link on any, and users can then drag it their bookmark bar fo
 
 More about bookmarklets here: http://en.wikipedia.org/wiki/Bookmarklet
 
+More about Weibo's search API (ver 1) that we are currently utilizing: http://open.weibo.com/wiki/Statuses/search/en
+
 Visual
 ============
 
@@ -42,5 +44,5 @@ Visual
 Contributing
 ============
 
-We welcome any and all contributions. Feel free to tackle any of the unasigned outstanding issues :) 
+We welcome any and all contributions. Feel free to tackle any of the unassigned outstanding issues :) 
 
