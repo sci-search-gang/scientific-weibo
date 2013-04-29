@@ -1,4 +1,3 @@
-
 /* Creates a uppercase hex number with at least length digits from a given number */
 function fixedHex(number, length){
     var str = number.toString(16).toUpperCase();
@@ -114,10 +113,10 @@ var collater = {
     */
 }
 
-// for displaying results
+// for displaying results and adding title that says "Scientific Search Results"
 var resulter = {
     resultify : function(results) {
-        var all = "<div>";
+        var all = "<div style='margin:25px'> <h1 font='Lucida Sans Unicode'>科学搜索结果</h1>";
         for (var i = 0; i < results.length; i++) {
             var r = results[i];
             all += "\n<div class='res'><a href=''>"+r.result.text+"</href></div>\n";
