@@ -174,7 +174,7 @@ var displayResults = function (results) {
   var resultsHtml = resulter.resultify(results);
   $("body div#results").remove();
   $("<div id='results'>" + resultsHtml + "</div>").appendTo("body");
-  $("body div#results").prepend("<div style='float:right; margin:2px;'><a onClick='removeResults();'>close</a></div>");
+  $("body div#results").prepend("<div style='float:right; margin:2px;'><a onClick='removeResults();'>X</a></div>");
 };
 
 //

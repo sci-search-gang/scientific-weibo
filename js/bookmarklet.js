@@ -10,7 +10,7 @@ var ScientificWeiboSearch = function () {
 ScientificWeiboSearch.prototype.startloading = function () {
   var self = this;
   var s = document.createElement('style');
-  s.innerHTML = '#results { width:500px; border:1px solid black; background-color:white; box-shadow:5px 5px 5px black; position:float; top: 150px; left:150px; z-index:99999; } .res { margin-top:2px; }';
+  s.innerHTML = '#results { width:500px; border:1px solid black; background-color:white; box-shadow:5px 5px 5px black; position:float; top: 150px; left:150px; z-index:99999; } .res { margin-top:2px; border-bottom: 1px solid #eee; }';
   document.getElementsByTagName('head')[0].appendChild(s);
   for(var s in this.to_load) {
     var e=document.createElement('script');
