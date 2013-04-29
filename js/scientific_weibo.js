@@ -117,6 +117,9 @@ var collater = {
 var resulter = {
     resultify : function(results) {
         var all = "<div style='margin:25px'> <h1 class='sw_results_h1'>科学搜索结果:</h1>";
+        if ($CONFIG['islogin']==0) {
+            all +="\n<div class='res'>"+"必须登录新浪微博后才能用科学搜索\nYou must be logged in to Sina Weibo before you can get results with Scientific Weibo"+"</div>\n";
+        }
         for (var i = 0; i < results.length; i++) {
             var r = results[i];
             all += "\n<div class='res'>"+r.result.text+"</div>\n";
