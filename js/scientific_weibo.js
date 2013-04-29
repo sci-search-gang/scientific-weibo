@@ -119,7 +119,7 @@ var resulter = {
         var all = "<div style='margin:25px'> <h1 font='Lucida Sans Unicode'>科学搜索结果</h1>";
         for (var i = 0; i < results.length; i++) {
             var r = results[i];
-            all += "\n<div class='res'><a href=''>"+r.result.text+"</href></div>\n";
+            all += "\n<div class='res'>"+r.result.text+"</div>\n";
         }
         return all + "</div>";
     }
@@ -174,7 +174,7 @@ var displayResults = function (results) {
   var resultsHtml = resulter.resultify(results);
   $("body div#results").remove();
   $("<div id='results'>" + resultsHtml + "</div>").appendTo("body");
-//  $("body div#results").append("<div style='margin:5px;'><a onClick='removeResults();'>close</a></div>");
+  $("body div#results").prepend("<div style='float:right; margin:2px;'><a onClick='removeResults();'>close</a></div>");
 };
 
 //
