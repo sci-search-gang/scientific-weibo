@@ -124,6 +124,9 @@ var resulter = {
             var r = results[i];
             all += "\n<div class='res'>"+r.result.text+"</div>\n";
         }
+        if (hits.length==0 || hit.length==null) {
+            all +="\n<div class='res'>对不起，现在我们找不到结果。我们的Appkey可能用尽我们的小时限制。等一下才再用科学搜索。如果你知道怎么解决这个问题，<a href=\"https://github.com/sci-search-gang/scientific-weibo\">去我们的GITHUB网页。</a>谢谢！</div>\n<div class='res'>Whoa looks like we can't currently find any results. It's possible that enough people have used this tool that we've maxed out our API limits! If you have ideas on how to help us get past these limits <a href=\"https://github.com/sci-search-gang/scientific-weibo\">please join the conversation on Github!</a> If this sounds like jargon to you dont worry! You can just try again tomorrow and hopefully we will fix this soon.</div>\n";
+        }
         return all + "</div>";
     }
 }
