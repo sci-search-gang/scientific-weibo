@@ -5,7 +5,7 @@ A javascript bookmarklet to enable access to otherwise blocked search results on
 Running
 =======
 
-Go to http://scientificweibo.tumblr.com and follow the instructions there.
+Go to http://scientificweibo.tumblr.com and follow the instructions there. Note, you need to have a weibo account and be logged in. You can create an account if you have an email address from: http://weibo.com/signup/signup.php
 
 Background
 ==========
