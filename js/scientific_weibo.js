@@ -119,7 +119,7 @@ var resulter = {
         var all = "<div style='margin:25px'> <h1 class='sw_results_h1'>科学搜索结果:</h1>";
         if ($CONFIG['islogin']==0) {
             all +="\n<div class='res'>必须登录新浪微博后才能用科学搜索</div>\n<div class='res'>You must be logged in to Sina Weibo before you can get results with Scientific Weibo</div>\n";
-        } else if (hits.length==0 || hit.length==null) {
+        } else if (results.length==0) {
             all +="\n<div class='res'>对不起，现在我们找不到结果。我们的Appkey可能用尽我们的小时限制。等一下才再用科学搜索。如果你知道怎么解决这个问题，<a href=\"https://github.com/sci-search-gang/scientific-weibo\">去我们的GITHUB网页。</a>谢谢！</div>\n<div class='res'>Whoa looks like we can't currently find any results. It's possible that enough people have used this tool that we've maxed out our API limits! If you have ideas on how to help us get past these limits <a href=\"https://github.com/sci-search-gang/scientific-weibo\">please join the conversation on Github!</a> If this sounds like jargon to you dont worry! You can just try again tomorrow and hopefully we will fix this soon.</div>\n";
         }
         for (var i = 0; i < results.length; i++) {
