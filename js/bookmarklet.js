@@ -1,7 +1,7 @@
 var ScientificWeiboSearch = function () {
   // TODO: show user that we are loading
   this.to_load = {
-    'https://raw.github.com/sci-search-gang/scientific-weibo/master/js/scientific_weibo.js': 1,
+    'https://raw.github.com/oliverdog/scientific-weibo/master/js/scientific_weibo.js': 1,
     'http://code.jquery.com/jquery-1.9.1.js': 1
   };
   this.loaded = [];
