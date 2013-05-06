@@ -20,7 +20,7 @@ This tool aims to be a simple-to-install and easy-to-use bookmarklet that
 
 3. presents them to the user.
 
-Latest dump of info: https://pad.riseup.net/p/weibo-fun
+Latest dump of info: https://github.com/sci-search-gang/scientific-weibo/wiki
 
 
 Building
